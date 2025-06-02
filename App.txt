@@ -1,0 +1,242 @@
+import React, { useState, useEffect } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+
+const offlineLegalUpdates = {
+  en: "Remember: You don’t have to talk to immigration officers alone. Ask for help.",
+  es: "Recuerda: No tienes que hablar con oficiales de inmigración solo. Pide ayuda."
+};
+
+const feelings = [
+  { emoji: '😊', en: 'Happy', es: 'Feliz' },
+  { emoji: '😢', en: 'Sad', es: 'Triste' },
+  { emoji: '😠', en: 'Angry', es: 'Bravo/a' },
+  { emoji: '😨', en: 'Scared', es: 'Asustado/a' },
+  { emoji: '😴', en: 'Tired', es: 'Cansado/a' },
+  { emoji: '🤔', en: 'Confused', es: 'Confundido/a' }
+];
+
+export default function App() {
+  const [language, setLanguage] = useState(null);
+  const [screen, setScreen] = useState('welcome');
+  const [dream, setDream] = useState('');
+  const [legalUpdate, setLegalUpdate] = useState('');
+  const [selectedFeeling, setSelectedFeeling] = useState(null);
+
+  useEffect(() => {
+    const updateFromServer = async () => {
+      try {
+        const response = {
+          en: "New: Kids now have more time to find a lawyer before court.",
+          es: "Nuevo: Ahora los niños tienen más tiempo para encontrar un abogado antes de la corte."
+        };
+        setLegalUpdate(response);
+      } catch (e) {
+        setLegalUpdate(offlineLegalUpdates);
+      }
+    };
+    updateFromServer();
+  }, []);
+
+  const renderWelcomeScreen = () => (
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 12 }}>Mi Camino / My Journey</Text>
+      <Text style={{ fontSize: 16, marginBottom: 20 }}>A safe space to understand your path. You are not alone.</Text>
+
+      <TouchableOpacity
+        style={{ backgroundColor: '#3B82F6', padding: 12, borderRadius: 14, marginBottom: 10 }}
+        onPress={() => { setLanguage('en'); setScreen('story'); }}
+      >
+        <Text style={{ color: '#fff', fontSize: 16 }}>Start in English 🇺🇸</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{ backgroundColor: '#10B981', padding: 12, borderRadius: 14 }}
+        onPress={() => { setLanguage('es'); setScreen('story'); }}
+      >
+        <Text style={{ color: '#fff', fontSize: 16 }}>Comenzar en Español 🇲🇽</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{ marginTop: 16 }} onPress={() => setScreen('feelings')}>
+        <Text style={{ color: '#8B5CF6', textDecorationLine: 'underline' }}>
+          {language === 'es' ? '¿Cómo me siento?' : 'How do I feel?'}
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{ marginTop: 8 }} onPress={() => setScreen('dreamTracker')}>
+        <Text style={{ color: '#059669', textDecorationLine: 'underline' }}>
+          {language === 'es' ? 'Mis Sueños' : 'My Dreams'}
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{ marginTop: 8 }} onPress={() => setScreen('pathExplorer')}>
+        <Text style={{ color: '#2563EB', textDecorationLine: 'underline' }}>
+          {language === 'es' ? 'Explora tu Camino' : 'Explore Path'}
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+
+  const renderStoryMode = () => (
+    <ScrollView style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 12 }}>
+        {language === 'es' ? 'Mi Historia' : 'My Story'}
+      </Text>
+
+      <Text style={{ fontSize: 16, marginBottom: 12 }}>
+        {language === 'es' ? 'Capítulo 1: El viaje comienza...' : 'Chapter 1: The journey begins...'}
+      </Text>
+      <Text style={{ fontSize: 14, marginBottom: 20 }}>
+        {language === 'es'
+          ? 'Una noche oscura, tú y tu hermanita cruzan un río...'
+          : 'On a dark night, you and your little sister cross a river...'}
+      </Text>
+
+      <Text style={{ fontSize: 16, marginBottom: 12 }}>
+        {language === 'es' ? 'Capítulo 2: Llegando a un nuevo lugar' : 'Chapter 2: Arriving in a new place'}
+      </Text>
+      <Text style={{ fontSize: 14, marginBottom: 20 }}>
+        {language === 'es'
+          ? 'Escuchas un idioma diferente y ves caras nuevas, pero también ves una escuela y un parque.'
+          : 'You hear a different language and see new faces, but you also see a school and a park.'}
+      </Text>
+
+      <TouchableOpacity
+        style={{ backgroundColor: '#374151', borderRadius: 14, padding: 12 }}
+        onPress={() => setScreen('welcome')}
+      >
+        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 16 }}>
+          {language === 'es' ? 'Volver al inicio' : 'Back to Home'}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+
+  const renderFeelingsGame = () => (
+    <ScrollView style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 12 }}>
+        {language === 'es' ? '¿Cómo me siento?' : 'How do I feel?'}
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 20 }}>
+        {feelings.map((f, index) => (
+          <TouchableOpacity
+            key={index}
+            style={{ margin: 8, padding: 16, backgroundColor: '#F3F4F6', borderRadius: 16 }}
+            onPress={() => setSelectedFeeling(f)}
+          >
+            <Text style={{ fontSize: 28, textAlign: 'center' }}>{f.emoji}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      {selectedFeeling && (
+        <View style={{ backgroundColor: '#DBEAFE', padding: 16, borderRadius: 12, marginBottom: 12 }}>
+          <Text style={{ fontSize: 16, textAlign: 'center', color: '#1E3A8A' }}>
+            {language === 'es'
+              ? `Está bien sentirse ${selectedFeeling.es}.`
+              : `It's okay to feel ${selectedFeeling.en}.`}
+          </Text>
+        </View>
+      )}
+      <TouchableOpacity
+        style={{ backgroundColor: '#374151', borderRadius: 14, padding: 12 }}
+        onPress={() => setScreen('welcome')}
+      >
+        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 16 }}>
+          {language === 'es' ? 'Volver al inicio' : 'Back to Home'}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+
+  const renderDreamTracker = () => (
+    <ScrollView style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 12 }}>
+        {language === 'es' ? '¿Con qué sueñas?' : 'What do you dream about?'}
+      </Text>
+      <Text style={{ fontSize: 16, textAlign: 'center', marginBottom: 20 }}>
+        {language === 'es'
+          ? 'Escríbelo, dibújalo, o solo imagínalo. Todo sueño es válido.'
+          : 'Write it, draw it, or just imagine it. Every dream matters.'}
+      </Text>
+      <TextInput
+        multiline
+        value={dream}
+        onChangeText={setDream}
+        placeholder={language === 'es' ? 'Quiero ser maestro...' : 'I want to be a teacher...'}
+        style={{ borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 16, marginBottom: 12 }}
+      />
+      {dream.length > 0 && (
+        <View style={{ backgroundColor: '#D1FAE5', padding: 16, borderRadius: 12, marginBottom: 12 }}>
+          <Text style={{ textAlign: 'center', color: '#065F46' }}>
+            {language === 'es' ? '¡Gracias por compartir tu sueño!' : 'Thank you for sharing your dream!'}
+          </Text>
+        </View>
+      )}
+      <TouchableOpacity
+        style={{ backgroundColor: '#374151', borderRadius: 14, padding: 12 }}
+        onPress={() => setScreen('welcome')}
+      >
+        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 16 }}>
+          {language === 'es' ? 'Volver al inicio' : 'Back to Home'}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+
+  const renderPathExplorer = () => (
+    <ScrollView style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 12 }}>
+        {language === 'es' ? 'Explora tu camino' : 'Explore Your Path'}
+      </Text>
+      <Text style={{ fontSize: 16, textAlign: 'center', marginBottom: 16 }}>
+        {language === 'es'
+          ? 'Aquí puedes ver las dos opciones: quedarte o regresar. Solo tú puedes decidir.'
+          : 'Here you can explore both options: staying or returning. Only you can decide.'}
+      </Text>
+
+      <View style={{ marginBottom: 16 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 8 }}>
+          {language === 'es' ? 'Si te quedas en EE.UU.:' : 'If you stay in the U.S.:'}
+        </Text>
+        <Text>- {language === 'es' ? 'Puedes ir a la escuela' : 'You can go to school'}</Text>
+        <Text>- {language === 'es' ? 'Puedes tener un abogado gratuito si lo pides' : 'You can have a free lawyer if you ask'}</Text>
+        <Text>- {language === 'es' ? 'Puedes conocer tus derechos poco a poco' : 'You can learn your rights little by little'}</Text>
+      </View>
+
+      <View style={{ marginBottom: 16 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 8 }}>
+          {language === 'es' ? 'Si regresas a tu país:' : 'If you return to your country:'}
+        </Text>
+        <Text>- {language === 'es' ? 'Podrás estar con tu familia si están allá' : 'You may be with family if they are there'}</Text>
+        <Text>- {language === 'es' ? 'Podrás intentar otra vez en el futuro' : 'You may try again in the future'}</Text>
+        <Text>- {language === 'es' ? 'Podrás seguir soñando' : 'You can keep dreaming'}</Text>
+      </View>
+
+      <Text style={{ textAlign: 'center', fontStyle: 'italic', marginBottom: 16 }}>
+        {language === 'es'
+          ? 'Nunca decimos qué hacer. Solo mostramos el camino. Tú decides.'
+          : 'We never say what to do. We just show the path. You choose.'}
+      </Text>
+
+      <TouchableOpacity
+        style={{ backgroundColor: '#374151', borderRadius: 14, padding: 12 }}
+        onPress={() => setScreen('welcome')}
+      >
+        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 16 }}>
+          {language === 'es' ? 'Volver al inicio' : 'Back to Home'}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+
+  return screen === 'welcome'
+    ? renderWelcomeScreen()
+    : screen === 'story'
+    ? renderStoryMode()
+    : screen === 'feelings'
+    ? renderFeelingsGame()
+    : screen === 'dreamTracker'
+    ? renderDreamTracker()
+    : screen === 'pathExplorer'
+    ? renderPathExplorer()
+    : renderWelcomeScreen();
+}
