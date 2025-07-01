@@ -1,42 +1,44 @@
-# Mi Camino App 🛤️ | v1.7
+# Mi Camino App
 
-A bilingual emotional support and guidance app built for immigrant children and families. Designed by Victor Gomez and ARKASH, this version (v1.7) introduces:
-
-- ⚖️ **Legal Support Tab**: Visual, kid-friendly guide to court terms and roles.
-- 🎮 **Mini-Game Prototype**: Simple, grounding choices.
-- 📘 **Emotional Glossary**: English & Spanish toggle with "log this feeling" feature.
-- 🔐 Safety-first flow, offline navigation, and future expandability.
+**Version:** v1.7  
+**Author:** Victor Andres Sabi Gomez Vargas (Sabifromccs)  
+**Built with:** React Native (Expo) + 💙 by ARKASH  
 
 ---
 
-### 🎯 Mission
+## 🛤️ About
 
-To offer safe, compassionate, and accessible emotional tools for those navigating trauma, uncertainty, and new environments—especially youth facing immigration systems.
-
----
-
-### 📁 Folder Structure (Simplified)
-
+**Mi Camino** is a free bilingual (English & Spanish) emotional support app designed for immigrant children navigating the U.S. legal system and overwhelming emotions. Built from lived experience and compassion — not fear.
 
 ---
 
-### 🛠️ Tech Stack
+## 💡 Features (v1.7)
 
-- React Native + Expo
-- React Navigation
-- AsyncStorage (offline logging)
-- GitHub version control (this repo!)
-
----
-
-### 🚦 Next Milestones
-
-- [ ] Add screen for each emoji in "Feelings"
-- [ ] Expand mini-games tab
-- [ ] Build toggle for Legal Tab (ON/OFF ethics control)
-- [ ] README translations
-- [ ] Connect to GitHub Pages for public updates
+- 🧠 Emotional Glossary with kid-friendly definitions (ES/EN toggle)
+- 🎮 Mini Games for calming and comfort
+- 🧯 Mental reset tools
+- 🛡️ Safety and grounding info
+- ⚖️ Legal Support screen (non-advisory, educational only)
+- 🌐 Language Toggle (Spanish + English)
+- 🧪 Onboarding with comfort message and trust-building
+- 🎨 Visuals designed for young minds (and tired ones)
 
 ---
 
-Made with 💙 by Victor Gomez + ARKASH.
+## 🧭 Roadmap
+
+| Version | Highlights |
+|---------|------------|
+| v1.8 (Next) |  ➕ Feeling Detail screens<br>🕹️ Game 2<br>☁️ GitHub & Cloud sync<br>📱 Shareable .apk |
+| v2.0     | 🎓 Legal education module + toggle<br>🌈 New comfort games<br>🧠 AI-guided emotional logging |
+| Future   | 🎥 Animated onboarding<br>📖 Story mode (court journey)<br>🫂 Community & support access |
+
+---
+
+## 📦 Install
+
+```bash
+git clone https://github.com/Sabifromccs/mi-camino-app.git
+cd mi-camino-app
+npm install
+npx expo start
