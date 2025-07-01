@@ -35,3 +35,20 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Node.js / React Native defaults
+node_modules/
+.expo/
+.expo-shared/
+.env
+.DS_Store
+*.log
+*.tmp
+
+# VSCode
+.vscode/
+
+# iOS/Android native (if added later)
+ios/
+android/
+
