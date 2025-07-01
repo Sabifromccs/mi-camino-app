@@ -26,3 +26,12 @@
     }
   }
 }
+{
+  "expo": {
+    "name": "Mi Camino",
+    "slug": "mi-camino-app",
+    "extra": {
+      "ENV": "development"
+    }
+  }
+}

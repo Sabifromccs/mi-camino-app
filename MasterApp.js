@@ -183,3 +183,17 @@ export default function App() {
     </NavigationContainer>
   );
 }
+import Constants from 'expo-constants';
+import { Text, View } from 'react-native';
+
+export default function App() {
+  const env = Constants.expoConfig?.extra?.ENV || 'undefined';
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 18 }}>
+        Current Environment: {env}
+      </Text>
+    </View>
+  );
+}
