@@ -15,6 +15,8 @@ import LaunchScreen from './screens/LaunchScreen';
 import LegalUpdateScreen from './screens/LegalUpdateScreen';
 import SafetyScreen from './screens/SafetyScreen';
 import LegalSupportScreen from './screens/LegalSupportScreen';
+import ColorSafePlaceScreen from './screens/ColorSafePlaceScreen';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -140,6 +142,9 @@ function GamePackScreen() {
   );
 }
 
+<Tab.Screen name="Color" component={ColorSafePlaceScreen} />
+
+
 function MainTabs() {
   return (
     <Tab.Navigator screenOptions={({ route }) => ({
@@ -159,9 +164,11 @@ function MainTabs() {
       <Tab.Screen name="Glossary" component={MentalResetGlossary} />
       <Tab.Screen name="Feelings" component={FeelingsScreen} />
       <Tab.Screen name="Games" component={GamePackScreen} />
+      <Tab.Screen name="Color" component={ColorSafePlaceScreen} />
       <Tab.Screen name="Safety" component={SafetyScreen} />
       <Tab.Screen name="Language" component={LanguageScreen} />
       <Tab.Screen name="Legal" component={LegalSupportScreen} />
+
     </Tab.Navigator>
   );
 }
