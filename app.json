@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MiCaminoSafe",
-    "slug": "MiCaminoSafe",
+    "name": "Mi Camino",
+    "slug": "mi-camino-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,13 +23,7 @@
     },
     "web": {
       "favicon": "./assets/icon.png"
-    }
-  }
-}
-{
-  "expo": {
-    "name": "Mi Camino",
-    "slug": "mi-camino-app",
+    },
     "extra": {
       "ENV": "development"
     }
