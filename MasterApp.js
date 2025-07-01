@@ -1,4 +1,4 @@
-// SABI2025🔥 - Full Flow v1.7 | Game Demo + Debug Path Fixes
+// SABI2025🔥 - Full Flow v1.7.3 | GamePack Update
 // Project: Mi Camino App | Victor x ARKASH
 
 import React, { useState, useEffect } from 'react';
@@ -9,7 +9,6 @@ import { View, Text, ScrollView, Pressable, Switch, Alert, Image } from 'react-n
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
-// Replacing placeholder screens with real ones
 import FeelingsScreen from './screens/FeelingsScreen';
 import LanguageScreen from './screens/LanguageScreen';
 import LaunchScreen from './screens/LaunchScreen';
@@ -124,24 +123,20 @@ function MentalResetGlossary() {
   );
 }
 
-function GameDemoScreen() {
-  const [answered, setAnswered] = useState(false);
+function GamePackScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', padding: 16 }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Mini Game: What Helps You Feel Safe?</Text>
-      {!answered ? (
-        <>
-          <Pressable onPress={() => setAnswered(true)} style={{ backgroundColor: '#3b82f6', padding: 12, borderRadius: 12, marginBottom: 12 }}>
-            <Text style={{ color: 'white' }}>Taking deep breaths</Text>
-          </Pressable>
-          <Pressable onPress={() => setAnswered(true)} style={{ backgroundColor: '#3b82f6', padding: 12, borderRadius: 12 }}>
-            <Text style={{ color: 'white' }}>Talking to someone I trust</Text>
-          </Pressable>
-        </>
-      ) : (
-        <Text style={{ color: 'green', marginTop: 16, textAlign: 'center' }}>Great choice! Let’s keep practicing what helps us feel grounded.</Text>
-      )}
-    </View>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white', padding: 16 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>🎮 Game Time</Text>
+      <Text style={{ fontSize: 16, marginBottom: 12 }}>Here are a few gentle games to calm your mind and body:</Text>
+      <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 6 }}>🫧 Pop the Bubble</Text>
+      <Text style={{ fontSize: 14, marginBottom: 12 }}>Tap bubbles that float up the screen to release stress.</Text>
+      <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 6 }}>🌬️ Breathe with Me</Text>
+      <Text style={{ fontSize: 14, marginBottom: 12 }}>Follow the breathing animation to regulate your emotions.</Text>
+      <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 6 }}>🎨 Color a Safe Place</Text>
+      <Text style={{ fontSize: 14, marginBottom: 12 }}>Tap to change colors in a peaceful drawing. No rules, just calm.</Text>
+      <Text style={{ fontSize: 18, fontWeight: '600', marginBottom: 6 }}>📸 My Safe Object</Text>
+      <Text style={{ fontSize: 14 }}>Imagine or draw something that helps you feel safe. Optional journaling coming soon.</Text>
+    </ScrollView>
   );
 }
 
@@ -154,6 +149,7 @@ function MainTabs() {
         else if (route.name === 'Feelings') iconName = 'happy';
         else if (route.name === 'Games') iconName = 'game-controller';
         else if (route.name === 'Safety') iconName = 'shield-checkmark';
+        else if (route.name === 'Legal') iconName = 'gavel';
         else iconName = 'ellipse';
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -162,11 +158,10 @@ function MainTabs() {
     })}>
       <Tab.Screen name="Glossary" component={MentalResetGlossary} />
       <Tab.Screen name="Feelings" component={FeelingsScreen} />
-      <Tab.Screen name="Games" component={GameDemoScreen} />
+      <Tab.Screen name="Games" component={GamePackScreen} />
       <Tab.Screen name="Safety" component={SafetyScreen} />
       <Tab.Screen name="Language" component={LanguageScreen} />
       <Tab.Screen name="Legal" component={LegalSupportScreen} />
-
     </Tab.Navigator>
   );
 }
@@ -181,19 +176,5 @@ export default function App() {
         <Stack.Screen name="LegalUpdate" component={LegalUpdateScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-}
-import Constants from 'expo-constants';
-import { Text, View } from 'react-native';
-
-export default function App() {
-  const env = Constants.expoConfig?.extra?.ENV || 'undefined';
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 18 }}>
-        Current Environment: {env}
-      </Text>
-    </View>
   );
 }
