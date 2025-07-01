@@ -12,16 +12,18 @@
 
 ---
 
-## 💡 Features (v1.7)
+## ✨ Features (v1.7.5)
 
 - 🧠 Emotional Glossary with kid-friendly definitions (ES/EN toggle)
-- 🎮 Mini Games for calming and comfort
-- 🧯 Mental reset tools
+- 🧸 Mini Games for calming and comfort (with future interactivity)
+- 💬 Feelings Tab: Now includes more emotions (like anxious, bored, hopeful) with comfort suggestions and dual-language support
+- 🧭 Emotional popup offers guided choices: "I need a break", "Why do I feel this way?", or "Just wanted to tap"
+- 🛠️ Mental reset tools
 - 🛡️ Safety and grounding info
 - ⚖️ Legal Support screen (non-advisory, educational only)
 - 🌐 Language Toggle (Spanish + English)
-- 🧪 Onboarding with comfort message and trust-building
-- 🎨 Visuals designed for young minds (and tired ones)
+- 🤝 Onboarding with comfort message and trust-building
+
 
 ---
 
