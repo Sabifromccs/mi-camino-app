@@ -8,14 +8,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, ScrollView, Pressable, Switch, Alert, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-
+import MySafeObjectScreen from './screens/MySafeObjectScreen';
 import FeelingsScreen from './screens/FeelingsScreen';
 import LanguageScreen from './screens/LanguageScreen';
 import LaunchScreen from './screens/LaunchScreen';
 import LegalUpdateScreen from './screens/LegalUpdateScreen';
 import SafetyScreen from './screens/SafetyScreen';
-import LegalSupportScreen from './screens/LegalSupportScreen';
 import ColorSafePlaceScreen from './screens/ColorSafePlaceScreen';
+import LegalSupportScreen from './screens/LegalSupportScreen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -168,6 +170,7 @@ function MainTabs() {
       <Tab.Screen name="Safety" component={SafetyScreen} />
       <Tab.Screen name="Language" component={LanguageScreen} />
       <Tab.Screen name="Legal" component={LegalSupportScreen} />
+      <Tab.Screen name="Object" component={MySafeObjectScreen} />
 
     </Tab.Navigator>
   );
@@ -175,13 +178,16 @@ function MainTabs() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Onboarding">
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
-        <Stack.Screen name="Launch" component={LaunchScreen} />
-        <Stack.Screen name="LegalUpdate" component={LegalUpdateScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Onboarding">
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+          <Stack.Screen name="Launch" component={LaunchScreen} />
+          <Stack.Screen name="LegalUpdate" component={LegalUpdateScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
+
